@@ -28,4 +28,23 @@ router.post("/",async(req,res)=>{
 })
 
 
+
+router.put("/credit", async (req, res) => {
+  try {
+    const student = await Student.findOneAndUpdate(
+      { email: req.body.email },
+      { $set:{credit:req.body.credit} },
+      { new: true }
+    );
+    if (!student) {
+      res.status(400).json({ message: "can't get the data" });
+    }
+    res.status(200).json(student);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json("Server Error");
+  }
+});
+
+
 export const studentSignUpRouter=router
