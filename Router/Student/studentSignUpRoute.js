@@ -29,7 +29,7 @@ router.post("/",async(req,res)=>{
 
 
 
-router.put("/credit", async (req, res) => {
+router.post("/credit", async (req, res) => {
   try {
     const student = await Student.findOneAndUpdate(
       { email: req.body.email },
