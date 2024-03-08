@@ -7,6 +7,7 @@ import { Company} from "../../Model/company.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
+  console.log(req.body)
     try {
       const company = await Company.find({});
       if (!company) {
@@ -19,7 +20,8 @@ router.get("/", async (req, res) => {
     }
   });
 
-  router.put("/credit", async (req, res) => {
+  router.post("/credit", async (req, res) => {
+    console.log(req.body)
     try {
       const company = await Company.findOneAndUpdate(
         { companyName: req.body.name },
