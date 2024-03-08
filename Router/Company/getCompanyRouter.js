@@ -19,9 +19,13 @@ router.get("/", async (req, res) => {
     }
   });
 
-  router.post("/credit", async (req, res) => {
+  router.put("/credit", async (req, res) => {
     try {
-      const company = await Company.find({});
+      const company = await Company.findOneAndUpdate(
+        { companyName: req.body.name },
+        { $set:{credit:req.body.credit} },
+        { new: true }
+      );
       if (!company) {
         res.status(400).json({ message: "can't get the data" });
       }
